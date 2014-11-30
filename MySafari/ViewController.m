@@ -96,4 +96,9 @@
     return YES;
 }
 
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    NSLog(@"%@", error);
+}
+
+
 @end
