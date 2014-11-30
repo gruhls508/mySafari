@@ -23,13 +23,18 @@
 - (IBAction)onComingSoonButtonPressed:(UIButton *)sender {
 
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"New features" message:@"Coming soon.." preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Oh, well that's cool." style:UIAlertActionStyleDefault handler:nil
+        ]
+     ];
+
+
     [self presentViewController:alertController
                        animated:YES
-                     completion:^{
-
-                            nil;
-                     }];
+                     completion:nil];
     
+}
+
+- (void)onViewTapped:(UITapGestureRecognizer *)sender {
 }
 
 - (IBAction)onReloadButtonPressed:(UIButton *)sender {
@@ -54,12 +59,7 @@
 
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
-    
-    //  These are the methods that enable the forward & backward
-    //  buttons in the event that the WebView has valid destinations for the app to go forward and backward to.
-    //  This was easily the most exciting part of the app for me. I love the "canGoForward/canGoBack" methods
-    //  and how they are built into iOS code to do what they do.
-    
+        
     if ([self.myWebView canGoBack]) {
         self.backButton.enabled = YES;
     }
