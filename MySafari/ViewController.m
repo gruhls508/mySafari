@@ -21,12 +21,14 @@
 @implementation ViewController
 
 - (IBAction)onComingSoonButtonPressed:(UIButton *)sender {
-    
-    /*  We made this work in the copy on Meredith's Mac, this method is
-      just done by calling AlertViewDelegate in interface, creating an
-      alertview that displays here with message presented in a string
-      attached to the text property. Don't forget to add a button so
-      you can close the alertview when it displays! */
+
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"New features" message:@"Coming soon.." preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:^{
+
+                            nil;
+                     }];
     
 }
 
