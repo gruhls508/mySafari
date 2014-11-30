@@ -21,7 +21,6 @@
 		DD6816C5198033D900DF748F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6816A7198033D900DF748F /* UIKit.framework */; };
 		DD6816CD198033D900DF748F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD6816CB198033D900DF748F /* InfoPlist.strings */; };
 		DD6816CF198033D900DF748F /* MySafariTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DD6816CE198033D900DF748F /* MySafariTests.m */; };
-		DD6816D9198034F300DF748F /* CheckMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6816D8198034F300DF748F /* CheckMate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +53,6 @@
 		DD6816CA198033D900DF748F /* MySafariTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MySafariTests-Info.plist"; sourceTree = "<group>"; };
 		DD6816CC198033D900DF748F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DD6816CE198033D900DF748F /* MySafariTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySafariTests.m; sourceTree = "<group>"; };
-		DD6816D8198034F300DF748F /* CheckMate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CheckMate.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +61,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD6816A6198033D900DF748F /* CoreGraphics.framework in Frameworks */,
-				DD6816D9198034F300DF748F /* CheckMate.framework in Frameworks */,
 				DD6816A8198033D900DF748F /* UIKit.framework in Frameworks */,
 				DD6816A4198033D900DF748F /* Foundation.framework in Frameworks */,
 			);
@@ -104,7 +101,6 @@
 		DD6816A2198033D900DF748F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DD6816D8198034F300DF748F /* CheckMate.framework */,
 				DD6816A3198033D900DF748F /* Foundation.framework */,
 				DD6816A5198033D900DF748F /* CoreGraphics.framework */,
 				DD6816A7198033D900DF748F /* UIKit.framework */,
@@ -473,6 +469,7 @@
 				DD6816D4198033D900DF748F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DD6816D5198033D900DF748F /* Build configuration list for PBXNativeTarget "MySafariTests" */ = {
 			isa = XCConfigurationList;
@@ -481,6 +478,7 @@
 				DD6816D7198033D900DF748F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

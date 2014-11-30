@@ -21,8 +21,26 @@
 @end
 
 @implementation ViewController {
+
     NSArray *viewsArray;
 }
+
+
+#pragma mark Initialization
+
+- (void)viewDidLoad {
+
+    [super viewDidLoad];
+
+    self.backButton.enabled = NO;
+    self.forwardButton.enabled = NO;
+
+    viewsArray = [[NSArray alloc]initWithObjects:self.webView,self.urlTextField,self.backButton,self.forwardButton,self.backdropView,
+    self.stopButton, nil];
+}
+
+
+#pragma mark Button methods
 
 - (IBAction)onComingSoonButtonPressed:(UIButton *)sender {
 
@@ -30,7 +48,6 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"Oh, well that's cool." style:UIAlertActionStyleDefault handler:nil
         ]
      ];
-
 
     [self presentViewController:alertController
                        animated:YES
@@ -60,6 +77,10 @@
     [self.webView stopLoading];
 
 }
+
+
+#pragma mark Handling WebView load
+
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
         
     if ([self.webView canGoBack]) {
@@ -72,13 +93,7 @@
     else (self.forwardButton.enabled = NO);
 }
 
-- (void)viewDidLoad {
-    
-    [super viewDidLoad];
-    
-    self.backButton.enabled = NO;
-    self.forwardButton.enabled = NO;
-}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 
@@ -98,9 +113,11 @@
     return YES;
 }
 
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    NSLog(@"%@", error);
-}
+-(void)userDidScrollWebView {
 
+    int pageYOffset = [[self.webView stringByEvaluatingJavaScriptFromString:@"window.pageYOffset"] intValue];
+
+    NSLog(@"the offset is %i", pageYOffset);
+}
 
 @end
