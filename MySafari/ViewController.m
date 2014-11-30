@@ -8,22 +8,89 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UIWebViewDelegate, UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UIWebView *myWebView;
+@property (weak, nonatomic) IBOutlet UITextField *myURLTextField;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *forwardButton;
+
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (IBAction)onComingSoonButtonPressed:(UIButton *)sender {
+    /*  We made this work in the copy on Meredith's Mac, this method is
+      just done by calling AlertViewDelegate in interface, creating an
+      alertview that displays here with message presented in a string
+      attached to the text property. Don't forget to add a button so
+      you can close the alertview when it displays! */
+    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)onReloadButtonPressed:(UIButton *)sender {
+
+    [self.myWebView reload];
+}
+
+- (IBAction)onBackButtonPressed:(UIButton *)sender {
+
+        [self.myWebView goBack];
+
+}
+
+- (IBAction)onForwardButtonPressed:(UIButton *)sender {
+
+    [self.myWebView goForward];
+
+}
+
+- (IBAction)onStopLoadingButtonPressed:(UIButton *)sender {
+    [self.myWebView stopLoading];
+
+}
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+    //  These are the methods that enable the forward & backward
+    //  buttons in the event that the WebView has valid destinations for the app to go forward and backward to.
+    //  This was easily the most exciting part of the app for me. I love the "canGoForward/canGoBack" methods
+    //  and how they are built into iOS code to do what they do.
+    
+    if ([self.myWebView canGoBack]) {
+        self.backButton.enabled = YES;
+    }
+    else (self.backButton.enabled = NO);
+    if ([self.myWebView canGoForward]) {
+        self.forwardButton.enabled = YES;
+    }
+    else (self.forwardButton.enabled = NO);
+}
+
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    self.backButton.enabled = NO;
+    self.forwardButton.enabled = NO;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+    NSString *finalURL = self.myURLTextField.text;
+    
+    if (![self.myURLTextField.text hasPrefix:@"http://"]) {
+
+        finalURL = [@"http://" stringByAppendingString:
+                    self.myURLTextField.text];
+    }
+
+    NSURL *url = [NSURL URLWithString:finalURL];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [self.myWebView loadRequest:urlRequest];
+
+
+    return YES;
 }
 
 @end
