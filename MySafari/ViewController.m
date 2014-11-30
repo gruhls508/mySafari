@@ -10,15 +10,19 @@
 
 @interface ViewController () <UIWebViewDelegate, UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UIWebView *myWebView;
-@property (weak, nonatomic) IBOutlet UITextField *myURLTextField;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
+@property (weak, nonatomic) IBOutlet UIView *backdropView;
+@property (weak, nonatomic) IBOutlet UIButton *stopButton;
 
 
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    NSArray *viewsArray;
+}
 
 - (IBAction)onComingSoonButtonPressed:(UIButton *)sender {
 
@@ -34,37 +38,35 @@
     
 }
 
-- (void)onViewTapped:(UITapGestureRecognizer *)sender {
-}
-
 - (IBAction)onReloadButtonPressed:(UIButton *)sender {
 
-    [self.myWebView reload];
+    [self.webView reload];
 }
 
 - (IBAction)onBackButtonPressed:(UIButton *)sender {
 
-        [self.myWebView goBack];
+        [self.webView goBack];
 
 }
 
 - (IBAction)onForwardButtonPressed:(UIButton *)sender {
 
-    [self.myWebView goForward];
+    [self.webView goForward];
 
 }
 
 - (IBAction)onStopLoadingButtonPressed:(UIButton *)sender {
-    [self.myWebView stopLoading];
+
+    [self.webView stopLoading];
 
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
         
-    if ([self.myWebView canGoBack]) {
+    if ([self.webView canGoBack]) {
         self.backButton.enabled = YES;
     }
     else (self.backButton.enabled = NO);
-    if ([self.myWebView canGoForward]) {
+    if ([self.webView canGoForward]) {
         self.forwardButton.enabled = YES;
     }
     else (self.forwardButton.enabled = NO);
@@ -80,17 +82,17 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 
-    NSString *finalURL = self.myURLTextField.text;
+    NSString *finalURL = self.urlTextField.text;
     
-    if (![self.myURLTextField.text hasPrefix:@"http://"]) {
+    if (![self.urlTextField.text hasPrefix:@"http://"]) {
 
         finalURL = [@"http://" stringByAppendingString:
-                    self.myURLTextField.text];
+                    self.urlTextField.text];
     }
 
     NSURL *url = [NSURL URLWithString:finalURL];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    [self.myWebView loadRequest:urlRequest];
+    [self.webView loadRequest:urlRequest];
 
 
     return YES;
