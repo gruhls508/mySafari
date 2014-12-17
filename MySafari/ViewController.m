@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController () <UIWebViewDelegate, UITextFieldDelegate>
+@interface ViewController () <UIWebViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
@@ -23,6 +23,7 @@
 @implementation ViewController {
 
     NSArray *viewsArray;
+    CGFloat lastContentOffset;
 }
 
 
@@ -37,6 +38,8 @@
 
     viewsArray = [[NSArray alloc]initWithObjects:self.webView,self.urlTextField,self.backButton,self.forwardButton,self.backdropView,
     self.stopButton, nil];
+
+    self.webView.scrollView.delegate = self;
 }
 
 
@@ -113,11 +116,25 @@
     return YES;
 }
 
--(void)userDidScrollWebView {
 
-    int pageYOffset = [[self.webView stringByEvaluatingJavaScriptFromString:@"window.pageYOffset"] intValue];
+/*  Just got this detecting scroll events. Just need to detect whether the scrollView
+    is going upward or not. */
 
-    NSLog(@"the offset is %i", pageYOffset);
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
+    if([scrollView isEqual:_webView.scrollView]) {
+
+
+
+    }
 }
+
+//- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+//
+//    if([scrollView isEqual:_webView.scrollView]) {
+//
+//    }
+//}
+
 
 @end
