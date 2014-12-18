@@ -121,12 +121,18 @@
     is going upward or not. */
 
 
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
 
     CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
 
     if (translation.y > 0) {
 
+        NSLog(@"scrollin");
+
+        for (UIView *view in viewsArray) {
+
+//            view.hidden = YES;
+        }
 
     }
 
