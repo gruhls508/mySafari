@@ -23,8 +23,6 @@
 @implementation ViewController {
 
     NSArray *viewsArray;
-    CGFloat lastContentOffset;
-    CGFloat yVelocity;
 }
 
 
@@ -41,6 +39,7 @@
     self.stopButton, nil];
 
     self.webView.scrollView.delegate = self;
+
 }
 
 
@@ -121,22 +120,16 @@
 /*  Just got this detecting scroll events. Just need to detect whether the scrollView
     is going upward or not. */
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//
-//    if([scrollView isEqual:_webView.scrollView]) {
-//
-//
-//
-//    }
-//}
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 
-    if([scrollView isEqual:self.webView.scrollView]) {
+    CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
 
-        NSLog(@"%f", scrollView.contentOffset.y);
+    if (translation.y > 0) {
+
 
     }
+
 }
 
 //- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
