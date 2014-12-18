@@ -35,7 +35,7 @@
     self.backButton.enabled = NO;
     self.forwardButton.enabled = NO;
 
-    viewsArray = [[NSArray alloc]initWithObjects:self.webView,self.urlTextField,self.backButton,self.forwardButton,self.backdropView,
+    viewsArray = [[NSArray alloc]initWithObjects:self.urlTextField,self.backButton,self.forwardButton,self.backdropView,
     self.stopButton, nil];
 
     self.webView.scrollView.delegate = self;
@@ -125,13 +125,11 @@
 
     CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
 
-    if (translation.y > 0) {
-
-        NSLog(@"scrollin");
+    if (translation.y < 0) {
 
         for (UIView *view in viewsArray) {
 
-//            view.hidden = YES;
+            view.alpha = .15;
         }
 
     }
