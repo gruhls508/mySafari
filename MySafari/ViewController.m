@@ -24,6 +24,7 @@
 
     NSArray *viewsArray;
     CGFloat lastContentOffset;
+    CGFloat yVelocity;
 }
 
 
@@ -120,20 +121,30 @@
 /*  Just got this detecting scroll events. Just need to detect whether the scrollView
     is going upward or not. */
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//
+//    if([scrollView isEqual:_webView.scrollView]) {
+//
+//
+//
+//    }
+//}
 
-    if([scrollView isEqual:_webView.scrollView]) {
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 
+    if([scrollView isEqual:self.webView.scrollView]) {
 
+        NSLog(@"%f", scrollView.contentOffset.y);
 
     }
 }
 
-//- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 //
-//    if([scrollView isEqual:_webView.scrollView]) {
+//    if(([scrollView isEqual:self.webView.scrollView]) && (lastContentOffset > (int)scrollView.contentOffset.y)) {
 //
 //    }
+//
 //}
 
 
