@@ -30,6 +30,10 @@
 }
 
 
+/*  Next I want to add the method that will update the textField to reflect the URL
+    whatever webpage is displayed within the webView. Looks like the answer lies
+    with UIWebViewDelegate's "didStartLoad" method. */
+
 
 #pragma mark Initialization
 
@@ -128,12 +132,15 @@
     return YES;
 }
 
+
 - (void)requestWithURL:(NSString *)aURL {
 
     NSURL *url = [NSURL URLWithString:aURL];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:urlRequest];
 }
+
+
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
 
@@ -149,6 +156,7 @@
     }
 }
 
+
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 
     for (UIView *view in viewsArray) {
@@ -156,5 +164,6 @@
         view.hidden = NO;
     }
 }
+
 
 @end
