@@ -29,8 +29,7 @@
     NSArray *viewsArray;
 }
 
-
-/*  Next I want to add the method that will update the textField to reflect the URL
+    /*  Next I want to add the method that will update the textField to reflect the URL
     whatever webpage is displayed within the webView. Looks like the answer lies
     with UIWebViewDelegate's "didStartLoad" method. */
 
@@ -142,7 +141,7 @@
 
 
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 
     CGPoint translation = [scrollView.panGestureRecognizer
                            translationInView:scrollView.superview];
@@ -157,12 +156,20 @@
 }
 
 
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+
 
     for (UIView *view in viewsArray) {
 
         view.hidden = NO;
     }
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+
+
+    /* Need to get the URL of whatver page is being loaded within this method
+     and update the textField to reflect it. */
 }
 
 
