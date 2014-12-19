@@ -14,13 +14,15 @@
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
+
 @property (weak, nonatomic) IBOutlet UIView *backdropView;
 @property (weak, nonatomic) IBOutlet UIButton *stopButton;
 @property (weak, nonatomic) IBOutlet UIButton *reloadButton;
 @property (weak, nonatomic) IBOutlet UIButton *comingSoonButton;
 
-
 @end
+
+
 
 @implementation ViewController {
 
@@ -43,6 +45,11 @@
                   self.stopButton, nil];
 
     self.webView.scrollView.delegate = self;
+
+    NSString *initialWebpage = @"http://www.google.com";
+
+    [self requestWithURL:initialWebpage];
+    self.urlTextField.text = initialWebpage;
 }
 
 
@@ -89,7 +96,8 @@
 }
 
 
-#pragma mark Handling WebView load
+
+#pragma mark Webview management methods
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
         
@@ -104,7 +112,6 @@
 }
 
 
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 
     NSString *finalURL = self.urlTextField.text;
@@ -116,25 +123,22 @@
     }
 
 
-    /* Refactoring lines 120-122 to make a reusable method I can use
-     for any time the webView is loaded (i.e. in viewDidLoad.) */
-
-    NSURL *url = [NSURL URLWithString:finalURL];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    [self.webView loadRequest:urlRequest];
-
+    [self requestWithURL:finalURL];
 
     return YES;
 }
 
+- (void)requestWithURL:(NSString *)aURL {
 
-/*  Just got this detecting scroll events. Just need to detect whether the scrollView
-    is going upward or not. */
-
+    NSURL *url = [NSURL URLWithString:aURL];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:urlRequest];
+}
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
 
-    CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
+    CGPoint translation = [scrollView.panGestureRecognizer
+                           translationInView:scrollView.superview];
 
     if (translation.y < 0) {
 
@@ -142,18 +146,15 @@
 
             view.hidden = YES;
         }
-
     }
-
 }
 
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//
-//    if(([scrollView isEqual:self.webView.scrollView]) && (lastContentOffset > (int)scrollView.contentOffset.y)) {
-//
-//    }
-//
-//}
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 
+    for (UIView *view in viewsArray) {
+
+        view.hidden = NO;
+    }
+}
 
 @end
