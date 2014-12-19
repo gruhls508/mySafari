@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 @property (weak, nonatomic) IBOutlet UIView *backdropView;
 @property (weak, nonatomic) IBOutlet UIButton *stopButton;
+@property (weak, nonatomic) IBOutlet UIButton *reloadButton;
+@property (weak, nonatomic) IBOutlet UIButton *comingSoonButton;
 
 
 @end
@@ -24,6 +26,7 @@
 
     NSArray *viewsArray;
 }
+
 
 
 #pragma mark Initialization
@@ -35,11 +38,11 @@
     self.backButton.enabled = NO;
     self.forwardButton.enabled = NO;
 
-    viewsArray = [[NSArray alloc]initWithObjects:self.urlTextField,self.backButton,self.forwardButton,self.backdropView,
-    self.stopButton, nil];
+    viewsArray = [[NSArray alloc]initWithObjects:self.urlTextField,
+                  self.backButton,self.forwardButton,self.backdropView,
+                  self.stopButton, nil];
 
     self.webView.scrollView.delegate = self;
-
 }
 
 
@@ -47,9 +50,13 @@
 
 - (IBAction)onComingSoonButtonPressed:(UIButton *)sender {
 
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"New features" message:@"Coming soon.." preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Oh, well that's cool." style:UIAlertActionStyleDefault handler:nil
-        ]
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"New features"
+                                                                             message:@"Coming soon.."
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Oh, well that's cool."
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:nil]
      ];
 
     [self presentViewController:alertController
@@ -108,6 +115,10 @@
                     self.urlTextField.text];
     }
 
+
+    /* Refactoring lines 120-122 to make a reusable method I can use
+     for any time the webView is loaded (i.e. in viewDidLoad.) */
+
     NSURL *url = [NSURL URLWithString:finalURL];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:urlRequest];
@@ -129,7 +140,7 @@
 
         for (UIView *view in viewsArray) {
 
-            view.alpha = .15;
+            view.hidden = YES;
         }
 
     }

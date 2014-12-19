@@ -94,7 +94,9 @@
                     <connections>
                         <outlet property="backButton" destination="Fbo-F3-ZCQ" id="w1K-s9-xyk"/>
                         <outlet property="backdropView" destination="8GV-Hp-weh" id="v8u-9i-2ii"/>
+                        <outlet property="comingSoonButton" destination="KbH-ui-iVI" id="Ipx-Lw-3ka"/>
                         <outlet property="forwardButton" destination="VQ5-qv-3CL" id="He7-cZ-Wew"/>
+                        <outlet property="reloadButton" destination="S2l-NK-0ns" id="tOo-wB-gKh"/>
                         <outlet property="stopButton" destination="eDx-yo-Rg0" id="I1E-R5-1TB"/>
                         <outlet property="urlTextField" destination="4gj-v3-tMP" id="g1i-Qe-1OV"/>
                         <outlet property="webView" destination="7P5-ze-uFZ" id="UqU-KE-z3U"/>
