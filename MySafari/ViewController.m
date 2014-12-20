@@ -165,11 +165,18 @@
     }
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+//- (void)webViewDidStartLoad:(UIWebView *)webView {
+//
+//
+//    /* Need to get the URL of whatver page is being loaded within this method
+//     and update the textField to reflect it. */
+//}
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSLog(@"url = %@",request.mainDocumentURL);
 
-    /* Need to get the URL of whatver page is being loaded within this method
-     and update the textField to reflect it. */
+    return YES;
 }
 
 
