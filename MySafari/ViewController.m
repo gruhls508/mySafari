@@ -27,6 +27,7 @@
 @implementation ViewController {
 
     NSArray *viewsArray;
+    BOOL firstURLreturned;
 }
 
     /*  Next I want to add the method that will update the textField to reflect the URL
@@ -39,6 +40,7 @@
 - (void)viewDidLoad {
 
     [super viewDidLoad];
+
 
     self.backButton.enabled = NO;
     self.forwardButton.enabled = NO;
@@ -53,6 +55,8 @@
 
     [self requestWithURL:initialWebpage];
     self.urlTextField.text = initialWebpage;
+
+    firstURLreturned = YES;
 }
 
 
@@ -165,16 +169,19 @@
     }
 }
 
-//- (void)webViewDidStartLoad:(UIWebView *)webView {
-//}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    /*  The first time this runs when loading google, it's the URL I'd want.
-        The second time it adds junk to the end of the string. Gotta see if this is 
-     something that happens every time. */
+    /*  Need to set this up to only set the textField's text the first time it runs. 
+        Right now my plan is to set up a BOOL that allows the textField to be set the
+        first time this method is called. The BOOL would then get reset by some method
+        that gets called when the page finishes loading. */
 
-    NSLog(@"URL =  %@; mainDocURL = %@", request.URL, request.mainDocumentURL);
+    if (firstURLreturned == YES) {
+
+        self.urlTextField.text = [NSString stringWithFormat:@"%@", request.URL];
+        firstURLreturned = NO;
+    }
 
     return YES;
 }
