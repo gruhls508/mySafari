@@ -166,15 +166,15 @@
 }
 
 //- (void)webViewDidStartLoad:(UIWebView *)webView {
-//
-//
-//    /* Need to get the URL of whatver page is being loaded within this method
-//     and update the textField to reflect it. */
 //}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSLog(@"url = %@",request.mainDocumentURL);
+    /*  The first time this runs when loading google, it's the URL I'd want.
+        The second time it adds junk to the end of the string. Gotta see if this is 
+     something that happens every time. */
+
+    NSLog(@"URL =  %@; mainDocURL = %@", request.URL, request.mainDocumentURL);
 
     return YES;
 }
