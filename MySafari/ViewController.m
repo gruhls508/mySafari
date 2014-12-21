@@ -150,24 +150,12 @@
     CGPoint translation = [scrollView.panGestureRecognizer
                            translationInView:scrollView.superview];
 
-    if (translation.y < 0) {
-
         for (UIView *view in viewsArray) {
 
-            view.hidden = YES;
+            view.hidden = translation.y < 0 ? YES : NO;
         }
-    }
 }
 
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-
-
-    for (UIView *view in viewsArray) {
-
-        view.hidden = NO;
-    }
-}
 
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
