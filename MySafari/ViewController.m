@@ -28,6 +28,7 @@
 
     NSArray *viewsArray;
     BOOL firstURLreturned;
+    int webViewLoads;
 }
 
     /*  Next I want to add the method that will update the textField to reflect the URL
@@ -106,17 +107,7 @@
 
 #pragma mark Webview management methods
 
--(void)webViewDidFinishLoad:(UIWebView *)webView{
-        
-    if ([self.webView canGoBack]) {
-        self.backButton.enabled = YES;
-    }
-    else (self.backButton.enabled = NO);
-    if ([self.webView canGoForward]) {
-        self.forwardButton.enabled = YES;
-    }
-    else (self.forwardButton.enabled = NO);
-}
+
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -171,8 +162,24 @@
         firstURLreturned = NO;
     }
 
+    webViewLoads ++;
+
     return YES;
 }
 
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+
+    if ([self.webView canGoBack]) {
+        self.backButton.enabled = YES;
+    }
+    else (self.backButton.enabled = NO);
+    if ([self.webView canGoForward]) {
+        self.forwardButton.enabled = YES;
+    }
+    else (self.forwardButton.enabled = NO);
+
+    webViewLoads --;
+
+}
 
 @end
