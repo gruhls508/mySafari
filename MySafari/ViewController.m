@@ -156,8 +156,7 @@
 
         self.urlTextField.text = [NSString stringWithFormat:@"%@", request.URL];
 
-
-    return YES;
+        return YES;
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
@@ -171,6 +170,7 @@
     }
     else (self.forwardButton.enabled = NO);
 
+    self.urlTextField.text = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 
 }
 
