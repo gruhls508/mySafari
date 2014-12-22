@@ -104,11 +104,11 @@
 - (IBAction)onClearButtonPressed:(id)sender {
 
     self.urlTextField.text = @"";
+    self.urlTextField.placeholder = @"enter site address here";
 }
 
 
 #pragma mark Webview management methods
-
 
 
 
