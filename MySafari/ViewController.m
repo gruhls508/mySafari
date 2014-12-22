@@ -27,7 +27,6 @@
 @implementation ViewController {
 
     NSArray *viewsArray;
-    BOOL firstURLreturned;
     int webViewLoads;
 }
 
@@ -57,7 +56,6 @@
     [self requestWithURL:initialWebpage];
     self.urlTextField.text = initialWebpage;
 
-    firstURLreturned = YES;
 }
 
 
@@ -151,18 +149,9 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    /*  Need to set this up to only set the textField's text the first time it runs. 
-        Right now my plan is to set up a BOOL that allows the textField to be set the
-        first time this method is called. The BOOL would then get reset by some method
-        that gets called when the page finishes loading. */
-
-    if (firstURLreturned == YES) {
 
         self.urlTextField.text = [NSString stringWithFormat:@"%@", request.URL];
-        firstURLreturned = NO;
-    }
 
-    webViewLoads ++;
 
     return YES;
 }
@@ -178,7 +167,6 @@
     }
     else (self.forwardButton.enabled = NO);
 
-    webViewLoads --;
 
 }
 
