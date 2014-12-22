@@ -101,6 +101,10 @@
 
 }
 
+- (IBAction)onClearButtonPressed:(id)sender {
+
+    self.urlTextField.text = @"";
+}
 
 
 #pragma mark Webview management methods
