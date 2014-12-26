@@ -26,7 +26,7 @@
 
 @implementation ViewController {
 
-    NSArray *viewsArray;
+    NSArray *toolbarViews;
     int webViewLoads;
 }
 
@@ -45,7 +45,7 @@
     self.backButton.enabled = NO;
     self.forwardButton.enabled = NO;
 
-    viewsArray = [[NSArray alloc]initWithObjects:self.urlTextField,
+    toolbarViews = [[NSArray alloc]initWithObjects:self.urlTextField,
                   self.backButton,self.forwardButton,self.backdropView,
                   self.stopButton, nil];
 
@@ -56,6 +56,9 @@
     [self requestWithURL:initialWebpage];
     self.urlTextField.text = initialWebpage;
 
+    self.backdropView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.backdropView.layer.borderWidth = 0.35;
+    self.backdropView.frame = CGRectMake(-5, 0, 325, 82);
 }
 
 
@@ -143,7 +146,7 @@
     CGPoint translation = [scrollView.panGestureRecognizer
                            translationInView:scrollView.superview];
 
-        for (UIView *view in viewsArray) {
+        for (UIView *view in toolbarViews) {
 
             view.hidden = translation.y < 0 ? YES : NO;
         }
