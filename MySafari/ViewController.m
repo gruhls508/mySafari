@@ -74,8 +74,7 @@
 
     [alertController addAction:[UIAlertAction actionWithTitle:@"Oh, well that's cool."
                                                         style:UIAlertActionStyleDefault
-                                                      handler:nil]
-     ];
+                                                      handler:nil]];
 
     [self presentViewController:alertController
                        animated:YES
