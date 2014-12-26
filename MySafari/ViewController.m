@@ -58,7 +58,9 @@
 
     self.backdropView.layer.borderColor = [UIColor blackColor].CGColor;
     self.backdropView.layer.borderWidth = 0.35;
-    self.backdropView.frame = CGRectMake(-5, 0, 325, 82);
+//    self.backdropView.frame = CGRectMake(, 0, 325, 82);
+    self.backdropView.layer.cornerRadius = 2.5;
+    self.backdropView.layer.masksToBounds = YES;
 }
 
 
